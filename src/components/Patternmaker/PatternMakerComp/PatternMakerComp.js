@@ -15,6 +15,21 @@ const vol = new Tone.Volume(-12).toDestination();
 const lpfilter = new Tone.Filter().connect(vol);
 const feedbackDelay = new Tone.FeedbackDelay("12n", 0).connect(lpfilter);
 
+let kickSynth = new Tone.MembraneSynth({
+  pitchDecay: 0.15,
+  octaves: 5,
+}).connect(feedbackDelay);
+
+const triggerKick = (a, b) => {
+  kickSynth.triggerAttackRelease(a, b);
+};
+
+var noiseSynth = new Tone.NoiseSynth().connect(feedbackDelay);
+
+const triggerNoize = () => {
+  noiseSynth.triggerAttackRelease("8n");
+};
+
 const samples = new Tone.Sampler({
   urls: {
     A1: "/Loud/bdfilm.wav",
@@ -79,6 +94,30 @@ export default function PatternMakerComp(props) {
     default:
       notes = ["E2", "G1"];
   }
+
+  window.addEventListener(
+    "keydown",
+    function (event) {
+      if (event.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+      }
+
+      switch (event.key) {
+        case "z":
+          triggerKick("C1", "32n");
+          break;
+        case "x":
+          triggerNoize();
+          break;
+
+        default:
+          return; // Quit when this doesn't handle the key event.
+      }
+      // Cancel the default action to avoid it being handled twice
+      event.preventDefault();
+    },
+    true
+  );
 
   // SOUND EFFECTS
   useEffect(() => {

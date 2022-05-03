@@ -21,26 +21,6 @@ body,
   justify-content: center;
 }
 
-/* .square-page {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  align-content: stretch;
-} */
-
-/* .square {
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-}
-
-.TonejsPage {
-  border: 100px solid black;
-} */
-
 .main-container {
   height: 100%;
   background-color: red;
