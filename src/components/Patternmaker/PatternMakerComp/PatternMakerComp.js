@@ -15,16 +15,40 @@ const vol = new Tone.Volume(-12).toDestination();
 const lpfilter = new Tone.Filter().connect(vol);
 const feedbackDelay = new Tone.FeedbackDelay("12n", 0).connect(lpfilter);
 
+let monosynth = new Tone.MonoSynth({
+  oscillator: {
+    type: "square",
+  },
+  envelope: {
+    attack: 0.005,
+    decay: 0.1,
+    sustain: 0.9,
+    release: 1,
+  },
+  filterEnvelope: {
+    attack: 0.0,
+    decay: 0.2,
+    sustain: 0.5,
+    release: 2,
+    baseFrequency: 500,
+    octaves: 2,
+    exponent: 2,
+  },
+}).connect(feedbackDelay);
+monosynth.volume.value = -4;
+
 let kickSynth = new Tone.MembraneSynth({
   pitchDecay: 0.15,
   octaves: 5,
 }).connect(feedbackDelay);
+kickSynth.volume.value = -12;
 
 const triggerKick = (a, b) => {
   kickSynth.triggerAttackRelease(a, b);
 };
 
 var noiseSynth = new Tone.NoiseSynth().connect(feedbackDelay);
+noiseSynth.volume.value = -20;
 
 const triggerNoize = () => {
   noiseSynth.triggerAttackRelease("8n");
@@ -104,12 +128,41 @@ export default function PatternMakerComp(props) {
 
       switch (event.key) {
         case "z":
-          triggerKick("C1", "32n");
+          triggerKick("F2", "32n");
           break;
         case "x":
           triggerNoize();
           break;
-
+        case "1":
+          monosynth.triggerAttackRelease("C1", "32n");
+          break;
+        case "2":
+          monosynth.triggerAttackRelease("D1", "32n");
+          break;
+        case "3":
+          monosynth.triggerAttackRelease("F1", "32n");
+          break;
+        case "4":
+          monosynth.triggerAttackRelease("G1", "32n");
+          break;
+        case "5":
+          monosynth.triggerAttackRelease("A1", "32n");
+          break;
+        case "6":
+          monosynth.triggerAttackRelease("C2", "32n");
+          break;
+        case "7":
+          monosynth.triggerAttackRelease("D2", "32n");
+          break;
+        case "8":
+          monosynth.triggerAttackRelease("G2", "32n");
+          break;
+        case "9":
+          monosynth.triggerAttackRelease("A2", "32n");
+          break;
+        case "0":
+          monosynth.triggerAttackRelease("A3", "32n");
+          break;
         default:
           return; // Quit when this doesn't handle the key event.
       }
