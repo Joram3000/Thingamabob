@@ -56,16 +56,17 @@ const triggerNoize = () => {
 
 const samples = new Tone.Sampler({
   urls: {
-    A1: "/Loud/bdfilm.wav",
-    B1: "/Loud/jaydeesnare.wav",
-    C1: "/Metal/cowbell.wav",
-    D1: "/Metal/hih.wav",
-    E1: "/Soft/conga.wav",
-    F1: "/Soft/snap.wav",
-    G1: "/Wood/kick.wav",
-    A2: "/Wood/clap.wav",
+    A1: "/Loud/cymkik_b3staa.wav",
+    B1: "/Loud/jaydeesnare_qc9dw5.wav",
+    C1: "/Metal/cowbell_aihfsc.wav",
+    D1: "/Metal/hih_gmxx95.wav",
+    E1: "/Soft/conga_uvdi3n.wav",
+    F1: "/Soft/snap_mtp0yq.wav",
+    G1: "/Wood/kick_i1pqe6.wav",
+    A2: "/Wood/clap_xmxx6f.wav",
   },
-  baseUrl: "http://127.0.0.1:5500/src/data/Drumsounds",
+  baseUrl:
+    "https://res.cloudinary.com/dqqb0ldgk/video/upload/v1651657689/Drumsounds",
 }).connect(feedbackDelay);
 
 export default function PatternMakerComp(props) {
@@ -119,6 +120,7 @@ export default function PatternMakerComp(props) {
       notes = ["E2", "G1"];
   }
 
+  // keypressings
   window.addEventListener(
     "keydown",
     function (event) {
