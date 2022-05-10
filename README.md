@@ -11,7 +11,7 @@ Press the Tape-recorder to play/stop audio.
 
     Patternmaker (sequencer)
         You can click the blocks and create a new pattern.
-        Due to the target audience is 'schoolkids under 11y/o' the pattern is just 8th notes and just 1 bar long.
+        Due to the target audience is 'schoolkids under 12y/o' the pattern is just 8th notes and just 1 bar long.
         The current state is stored in Redux.
 
     Sound Selector
